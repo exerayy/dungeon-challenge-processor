@@ -55,6 +55,18 @@ func ParseConfig(filename string) (ParsedCfg, error) {
 
 	closeTime := openTime.Add(timeDuration)
 
+	dayStart := time.Date(0, 1, 1, 0, 0, 0, 0, time.UTC)
+	openSinceDayStart := openTime.Sub(dayStart)
+	closeSinceDayStart := closeTime.Sub(dayStart)
+
+	if openSinceDayStart < 0 || openSinceDayStart >= 24*time.Hour {
+		return ParsedCfg{}, fmt.Errorf("open time must be in range [00:00:00, 23:59:59]: %s", cfg.OpenAt)
+	}
+
+	if closeSinceDayStart < openSinceDayStart || closeSinceDayStart >= 24*time.Hour {
+		return ParsedCfg{}, fmt.Errorf("close time must be after open time and not exceed 23:59:59")
+	}
+
 	return ParsedCfg{
 		Floors:    cfg.Floors,
 		Monsters:  cfg.Monsters,

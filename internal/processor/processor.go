@@ -150,6 +150,10 @@ func (gs *GameState) processEvent(event Event) []string {
 		}
 
 	case eventEnterTheDungeon:
+		if event.Time.Before(gs.Cfg.OpenTime) {
+			return nil
+		}
+
 		if !player.Registered {
 			player.Disqualified = true
 			messages = append(messages, "is disqualified")

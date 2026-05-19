@@ -40,7 +40,7 @@ func main() {
 	fmt.Printf("Floors: %d\n", dungeonCfg.Floors)
 	fmt.Printf("Monsters: %d\n", dungeonCfg.Monsters)
 	fmt.Printf("OpenAt: %s\n", dungeonCfg.OpenTime.Format(layout))
-	fmt.Printf("CloseAt: %s\n", dungeonCfg.CloseTime.Format(layout))
+	fmt.Printf("CloseAt: %s\n\n", dungeonCfg.CloseTime.Format(layout))
 
 	game := processor.NewGameState(dungeonCfg)
 

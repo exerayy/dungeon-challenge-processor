@@ -120,14 +120,14 @@ func TestGameState_ProcessEvents(t *testing.T) {
 				CloseTime: parseTestTime(t, "11:00:00"),
 			},
 			events: `[09:00:00] 1 1
-				 	 [09:30:00] 1 2
+				 	 [10:30:00] 1 2
 					 [12:00:00] 1 3`,
 			expectedLogs: []string{
 				"[09:00:00] Player [1] registered",
-				"[09:30:00] Player [1] entered the dungeon",
+				"[10:30:00] Player [1] entered the dungeon",
 			},
 			expectedReport: []string{
-				"[FAIL] 1 [01:30:00, 00:00:00, 00:00:00] HP:100",
+				"[FAIL] 1 [00:30:00, 00:00:00, 00:00:00] HP:100",
 			},
 		},
 		{

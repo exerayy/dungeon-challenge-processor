@@ -38,13 +38,13 @@ func TestParseConfig(t *testing.T) {
 				"Floors": 1,
 				"Monsters": 5,
 				"OpenAt": "00:00:00",
-				"Duration": 24
+				"Duration": 23
 			}`,
 			expected: ParsedCfg{
 				Floors:    1,
 				Monsters:  5,
 				OpenTime:  parseTestTime(t, "00:00:00"),
-				CloseTime: parseTestTime(t, "00:00:00").Add(24 * time.Hour),
+				CloseTime: parseTestTime(t, "00:00:00").Add(23 * time.Hour),
 			},
 		},
 		{
@@ -80,16 +80,16 @@ func TestParseConfig(t *testing.T) {
 		{
 			name: "config with large numbers",
 			jsonContent: `{
-				"Floors": 100,
+				"Floors": 1000,
 				"Monsters": 1000,
 				"OpenAt": "10:00:00",
-				"Duration": 100
+				"Duration": 10
 			}`,
 			expected: ParsedCfg{
-				Floors:    100,
+				Floors:    1000,
 				Monsters:  1000,
 				OpenTime:  parseTestTime(t, "10:00:00"),
-				CloseTime: parseTestTime(t, "10:00:00").Add(100 * time.Hour),
+				CloseTime: parseTestTime(t, "10:00:00").Add(10 * time.Hour),
 			},
 		},
 		{
